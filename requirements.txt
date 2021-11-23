@@ -1,0 +1,8 @@
+click
+torch
+scipy
+opencv-python
+opencv-contrib-python
+scikit-image
+pillow>=4.3.0
+torch

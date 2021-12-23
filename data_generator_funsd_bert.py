@@ -154,8 +154,8 @@ def get_box_mask_box_label_word(dataset_instance, idx):
     new_max_x = int((max_x-min_x)/min_w)+1
     new_max_y = int((max_y-min_y)/min_h)+1
     scaling_ratios = [cell.w/len(cell.ocr_value) if len(cell.ocr_value)!=0 else 0  for cell in cell_lists]
-    mean_scaling_ratios=sum(scaling_ratios)/len(scaling_ratios)
-    scaling_ratios=[ ele if ele!=0 else mean_scaling_ratios for ele in scaling_ratios]
+    mean_scaling_ratios = sum(scaling_ratios)/len(scaling_ratios)
+    scaling_ratios = [ele if ele!=0 else mean_scaling_ratios for ele in scaling_ratios]
     #scaling_ratios = [cell.w/len(cell.ocr_value) for cell in cell_lists]
     min_scale = min(scaling_ratios)
     label_mask = np.zeros((new_max_y, new_max_x)).astype('uint8')
@@ -229,7 +229,6 @@ class FUNSDMaskDataLoader(Dataset):
             return_lists = self.getitem(idx)
         return return_lists
 
-#correction is here
 class FUNSDCharGridDataLoaderBoxMaskBoxLabel(FUNSDMaskDataLoader):
     def __init__(self, funsd_pickle_path, labels_dict=None):
         super(FUNSDCharGridDataLoaderBoxMaskBoxLabel, self).__init__(
